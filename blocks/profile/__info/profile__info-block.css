@@ -1,0 +1,7 @@
+.profile__info-block{
+    padding-top: 20px;
+    min-width: 420px ;
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+}

@@ -1,0 +1,9 @@
+.elements__block {
+  display: flex;
+  flex-wrap: wrap;
+  width: 282px;
+  height: 361px;
+  background: #ffffff;
+  border-radius: 10px;
+  font-family: "Inter", Arial, sans-serif;
+}
