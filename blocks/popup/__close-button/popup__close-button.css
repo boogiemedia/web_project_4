@@ -1,0 +1,18 @@
+.popup__close-button{
+    margin:  146px auto 0;
+    background-image: url(../../../images/Close-Icon.png);
+    max-width: 526px;
+    height: 48px;
+    width: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position-x: right;
+}
+
+@media screen and (max-width: 760px) {
+    .popup__close-button{
+        width: 282px;
+        margin:  72px auto 0;
+    }
+    
+}
