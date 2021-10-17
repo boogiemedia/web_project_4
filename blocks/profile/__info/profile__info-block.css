@@ -2,8 +2,11 @@
     padding-top: 20px;
     min-width: 420px ;
     margin-left: 20px;
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: 1fr 24px;
+    grid-template-areas:
+    "name button"
+    "description description";
 }
 
 @media screen and (max-width: 760px) {
