@@ -8,7 +8,7 @@
   background-image: url("../../../images/edit_btn.png");
   background-repeat: no-repeat;
   background-position: center;
-  background-size: contain;
+  background-size: fit;
 }
 
 @media screen and (max-width: 760px) {
@@ -18,4 +18,8 @@
     width: 18px;
     height: 18px;
   }
+}
+
+.profile__edit-button:hover {
+  opacity: 0.6;
 }

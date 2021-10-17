@@ -1,4 +1,5 @@
 .profile__sub-info {
+  grid-area: description;
   margin: 0;
   font-family: "Inter", Arial, sans-serif;
   font-weight: 400;
