@@ -5,4 +5,8 @@
   width: 21px;
   height: 19px;
   background-image: url(../../../images/heart.png);
+  transition: 0.3s;
+}
+.elements__like:hover {
+  opacity: 0.6;
 }
