@@ -89,14 +89,15 @@
       <p class="footer__title">© 2021 Around The U.S.</p>
     </footer>
     <form class="popup">
-      <button class="popup__close-button" aria-label="close-button"></button>
+      
       <div class="popup__form">
+        <button class="popup__close-button" aria-label="close-button"></button>
         <h3 class="popup__title">Edit profile</h3>
-        <input class="popup__input popup__input_type_name" />
-        <input class="popup__input popup__input_type_description" />
-        <button class="popup__save-button">Save</button>
+        <input class="popup__input popup__input_type_name" name="name"/>
+        <input class="popup__input popup__input_type_description" name="about"/>
+        <button class="popup__save-button" type="submit">Save</button>
       </div>
     </form>
-    <script src="./index.js"></script>
+    <script src="./script/index.js"></script>
   </body>
 </html>

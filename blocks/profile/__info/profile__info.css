@@ -3,6 +3,9 @@
   margin: 0;
   margin-bottom: 16px;
   max-width: 380px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
   width: 100%;
   font-family: "Inter", Arial, sans-serif;
   font-weight: 500;
@@ -12,6 +15,7 @@
 }
 @media screen and (max-width: 760px) {
   .profile__info {
+    max-width: 200px;
     font-size: 22px;
     line-height: 27px;
     text-align: center;
