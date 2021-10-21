@@ -9,7 +9,8 @@
   background-repeat: no-repeat;
   background-position: center;
   transition: 0.3s;
-  cursor: pointer
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0);;
 }
 @media screen and (max-width: 760px) {
   .profile__add-button {

@@ -20,10 +20,13 @@
         />
         <div class="profile__info-block">
           <h1 class="profile__info">Jacques Cousteau</h1>
-          <div class="profile__edit-button"></div>
+          <button
+            class="profile__edit-button"
+            aria-label="edit-button"
+          ></button>
           <p class="profile__sub-info">Explorer</p>
         </div>
-        <div class="profile__add-button"></div>
+        <button class="profile__add-button" aria-label="add-button"></button>
       </section>
       <section class="elements">
         <div class="elements__block">
@@ -81,18 +84,17 @@
           <div class="elements__like"></div>
         </div>
       </section>
-      </div>
     </main>
     <footer class="footer">
       <p class="footer__title">© 2021 Around The U.S.</p>
     </footer>
-    <form method="post" class="popup">
-      <div class="popup__close-button"></div>
+    <form class="popup">
+      <button class="popup__close-button" aria-label="close-button"></button>
       <div class="popup__form">
         <h3 class="popup__title">Edit profile</h3>
-        <input class="popup__input popup__input_type_name" name="name"/>
-        <input class="popup__input popup__input_type_description" name="about"/>
-        <button class="popup__save-button" type="submit">Save</button>
+        <input class="popup__input popup__input_type_name" />
+        <input class="popup__input popup__input_type_description" />
+        <button class="popup__save-button">Save</button>
       </div>
     </form>
     <script src="./index.js"></script>
