@@ -10,9 +10,17 @@
   line-height: 22px;
   color: #545454;
 }
+@media screen and (max-width: 920px) {
+  .footer__title{
+    margin: 50px auto 36px;
+    width: 581px;
+  }
+  
+}
 @media screen and (max-width: 760px) {
   .footer__title{
-    margin: 50px 19px 36px 0;
+    margin: 50px auto 36px;
+    width: 281px;
   }
   
 }

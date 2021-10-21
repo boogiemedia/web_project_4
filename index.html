@@ -20,10 +20,10 @@
         />
         <div class="profile__info-block">
           <h1 class="profile__info">Jacques Cousteau</h1>
-          <button class="profile__edit-button"></button>
+          <div class="profile__edit-button"></div>
           <p class="profile__sub-info">Explorer</p>
         </div>
-        <button class="profile__add-button"></button>
+        <div class="profile__add-button"></div>
       </section>
       <section class="elements">
         <div class="elements__block">
@@ -33,7 +33,7 @@
             class="elements__cover"
           />
           <h2 class="elements__title">Yosemite Valley</h2>
-          <button class="elements__like"></button>
+          <div class="elements__like"></div>
         </div>
         <div class="elements__block">
           <img
@@ -86,14 +86,15 @@
     <footer class="footer">
       <p class="footer__title">© 2021 Around The U.S.</p>
     </footer>
-    <div class="popup">
-      <button class="popup__close-button"></button>
+    <form method="post" class="popup">
+      <div class="popup__close-button"></div>
       <div class="popup__form">
         <h3 class="popup__title">Edit profile</h3>
-        <input class="popup__input popup__input_type_name" />
-        <input class="popup__input popup__input_type_description" />
-        <button class="popup__save-button">Save</button>
+        <input class="popup__input popup__input_type_name" name="name"/>
+        <input class="popup__input popup__input_type_description" name="about"/>
+        <button class="popup__save-button" type="submit">Save</button>
       </div>
+    </form>
     <script src="./index.js"></script>
   </body>
 </html>

@@ -1,0 +1,4 @@
+.popup_oppened{
+    display: flex;
+    flex-direction: column;
+  }

@@ -2,6 +2,7 @@
   grid-area: name;
   margin: 0;
   margin-bottom: 16px;
+  max-width: 380px;
   width: 100%;
   font-family: "Inter", Arial, sans-serif;
   font-weight: 500;
