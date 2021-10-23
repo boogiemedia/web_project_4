@@ -11,16 +11,15 @@
   color: #545454;
 }
 @media screen and (max-width: 920px) {
-  .footer__title{
+  .footer__title {
     margin: 50px auto 36px;
     width: 581px;
   }
-  
 }
 @media screen and (max-width: 760px) {
-  .footer__title{
-    margin: 50px auto 36px;
+  .footer__title {
+    font-size: 14px;
+    line-height: 17px;
     width: 281px;
   }
-  
 }
