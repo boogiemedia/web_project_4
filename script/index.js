@@ -27,8 +27,8 @@ profileEdditor.addEventListener("click", () => {
   descriptionChanger.value = profileSubInfo.textContent;
 });
 //submit the changes and close pupup
-popUp.addEventListener("submit", (Event) => {
-  Event.preventDefault();
+popUp.addEventListener("submit", (event) => {
+  event.preventDefault();
   closePopup();
   profileName.textContent = nameChanger.value;
   profileSubInfo.textContent = descriptionChanger.value;
