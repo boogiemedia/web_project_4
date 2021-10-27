@@ -88,13 +88,21 @@
     <footer class="footer">
       <p class="footer__title">© 2021 Around The U.S.</p>
     </footer>
-    <div class="popup">
-      
+    <div class="popup popup_person">
       <form method="post" name="ProfileForm" class="popup__form">
         <button type="button" class="popup__close-button" aria-label="close-button"></button>
         <h3 class="popup__title">Edit profile</h3>
         <input class="popup__input popup__input_type_name" name="Name"/>
         <input class="popup__input popup__input_type_description" name="AboutMe"/>
+        <button class="popup__save-button" type="submit">Save</button>
+      </form>
+    </div>
+    <div class="popup popup_card">
+      <form method="post" name="ProfileForm" class="popup__form">
+        <button type="button" class="popup__close-button" aria-label="close-button"></button>
+        <h3 class="popup__title">Add Card</h3>
+        <input class="popup__input popup__input_type_title" name="title"/>
+        <input class="popup__input popup__input_type_description" name="link"/>
         <button class="popup__save-button" type="submit">Save</button>
       </form>
     </div>
