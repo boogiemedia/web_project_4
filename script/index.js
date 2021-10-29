@@ -55,10 +55,10 @@ function openCardEdditor() {
   popUpCardEdditor.classList.add("popup_oppened");
 }
 
-function addCardElement (cardData) { //card {title, link}
+function addCardElement (elementData) { //card {title, link}
   const element = elementTemplate.cloneNode(true);
   element.querySelector(".elements__title").textContent = elementData.name;
-  element.querySelector(".elements__cover").style.backgorundImage = url`(${elementData.link})`;
+  element.querySelector(".elements__cover").style.backgorundImage = `url(${elementData.link})`;
   
   return element;
 }
