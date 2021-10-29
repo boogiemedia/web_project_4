@@ -4,15 +4,22 @@ const profileSubInfo = document.querySelector(".profile__sub-info");
 //text changable fields
 const nameChanger = document.querySelector(".popup__input_type_name");
 const descriptionChanger = document.querySelector(".popup__input_type_description");
+const cardName = document.querySelector(".popup__input_type_title");
+const cardLink = document.querySelector(".popup__input_type_link");
 //buttons
-const popup =document.querySelector("popup");
 const profileEdditor = document.querySelector(".profile__edit-button");
 const ProfileAddCard = document.querySelector(".profile__add-button")
 const closeButton = document.querySelectorAll(".popup__close-button");
+const SubmitBtn = document.querySelectorAll(".popup__save-button");
+const trash = document.querySelectorAll(".elements__trash");
 //popups
 const popUp =document.querySelectorAll(".popup");
 const popUpProfileEdditor = document.querySelector(".popup_type_profile-edditor");
 const popUpCardEdditor = document.querySelector(".popup_type_card-edditor");
+//cards elements
+const elementsPlace = document.querySelector(".elements");
+const elementTemplate = document.querySelector(".elements__template").content.querySelector(".elements__block");
+//end of variables*************************************************************************
 
 //Cards
 const initialElements = [
@@ -41,10 +48,8 @@ const initialElements = [
     link: "https://code.s3.yandex.net/web-code/lago.jpg"
   }
 ]; 
-//cards elements
-const elementsPlace = document.querySelector(".elements");
-const elementTemplate = document.querySelector(".elements__template").content.querySelector(".elements__block");
-//end of variables*************************************************************************
+
+// end of card list****************************************************************************
 
 //profile edditor oppener
 function openProfileEdditor() {
@@ -55,47 +60,70 @@ function openCardEdditor() {
   popUpCardEdditor.classList.add("popup_oppened");
 }
 
-function addCardElement (elementData) { //card {title, link}
+
+// card edditor
+function addCardElement (elementData) {
   const element = elementTemplate.cloneNode(true);
   element.querySelector(".elements__title").textContent = elementData.name;
-  element.querySelector(".elements__cover").style.backgorundImage = `url(${elementData.link})`;
+  element.querySelector(".elements__cover").style.backgroundImage = `url(${elementData.link})`;
   
+  element.querySelector(".elements__trash").addEventListener('click', () => {
+    element.remove();
+  });
+  element.querySelector(".elements__like").addEventListener('click', (event) => {
+    event.target.classList.add("elements__like_type_active");
+});
   return element;
 }
+
 initialElements.forEach(initialElements =>{
   elementsPlace.prepend(addCardElement(initialElements));
-
 })
+
+function newCardElement() {
+ const addNewCard = addCardElement({
+        name: cardName.value,
+          link: cardLink.value
+    });
+    elementsPlace.prepend(addNewCard);
+
+  }
 //end of functions**************************************************************************
 
 // profile edditor btn
 profileEdditor.addEventListener("click", () => {
-  openProfileEdditor();
+  openProfileEdditor();  
   nameChanger.value = profileName.textContent;
   descriptionChanger.value = profileSubInfo.textContent;
 });
 
+
 //card edditor btn
 ProfileAddCard.addEventListener("click", () => {
   openCardEdditor();
-  
 });
+//end of btns**************************************************************************
 
-//submit the changes and close pupup
+
+//submit Card
+popUpCardEdditor.addEventListener("submit", (event) => {
+  event.preventDefault();
+  newCardElement();
+  });
+
 //submit profile
 popUpProfileEdditor.addEventListener("submit", (event) => {
   event.preventDefault();
   profileName.textContent = nameChanger.value;
   profileSubInfo.textContent = descriptionChanger.value;
 });
-//submit Card
-popUpCardEdditor.addEventListener("submit", (event) => {
-  event.preventDefault();
-});
-//close button
+
+//close elements
+  SubmitBtn.forEach(btn => btn.addEventListener("click",() => {
+    popUp.forEach(pop => pop.classList.remove("popup_oppened"))
+  }));
 closeButton.forEach(btn => btn.addEventListener("click",() => {
   popUp.forEach(pop => pop.classList.remove("popup_oppened"))
-  
 }));
 
 //end of EventListener***********************************************************************
