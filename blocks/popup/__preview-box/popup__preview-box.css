@@ -1,0 +1,10 @@
+.popup__preview-box {
+    position: relative;
+    max-width: 80%;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+
+}

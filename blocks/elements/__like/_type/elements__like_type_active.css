@@ -1,13 +1,7 @@
 .elements__like_type_active {
-  margin-top: 6px;
-  margin-right: 18px;
-  margin-left: auto;
-  width: 21px;
-  height: 19px;
-  background-image: url(../../../images/heart-active.svg);
-  cursor: pointer;
-  transition: 0.3s;
-  border: 0;
+ 
+  background-image: url(../../../../images/heart-active.svg);
+  
   background-color: rgb(0, 0, 0, 0);
 }
 .elements__like_type_active:hover {
