@@ -57,8 +57,7 @@ const initialElements = [
 
 // end of card list****************************************************************************
 
-//profile edditor oppener
-
+//popyp open
 function openPopUp(popUp) {
   popUp.classList.add("popup_oppened");
 }
