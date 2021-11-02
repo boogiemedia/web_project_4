@@ -16,7 +16,9 @@ const SubmitBtn = document.querySelectorAll(".popup__save-button");
 const trash = document.querySelectorAll(".elements__trash");
 //popups
 const popUp = document.querySelectorAll(".popup");
-const popUpProfileEdditor = document.querySelector(".popup_type_profile-edditor");
+const popUpProfileEdditor = document.querySelector(
+  ".popup_type_profile-edditor"
+);
 const popUpCardEdditor = document.querySelector(".popup_type_card-edditor");
 const popUpPreview = document.querySelector(".popup_type_preview");
 
@@ -66,10 +68,8 @@ function openPopUp(popUp) {
 function addCardElement(elementData) {
   const element = elementTemplate.cloneNode(true);
   element.querySelector(".elements__title").textContent = elementData.name;
-  element.querySelector(
-    ".elements__cover"
-  ).style.backgroundImage = `url(${elementData.link})`;
-
+  element.querySelector(".elements__cover").style.backgroundImage = `url(${elementData.link})`;
+  //remove element
   element.querySelector(".elements__trash").addEventListener("click", () => {
     element.remove();
   });
@@ -82,14 +82,14 @@ function addCardElement(elementData) {
   //opne preview
   element.querySelector(".elements__cover").addEventListener("click", () => {
     openPopUp(popUpPreview);
-    popUpPreview.querySelector(".popup__preview-text").textContent = elementData.name;
+    popUpPreview.querySelector(".popup__preview-text").textContent =
+      elementData.name;
     popUpPreview.querySelector(".popup__preview").alt = elementData.name;
     popUpPreview.querySelector(".popup__preview").src = elementData.link;
   });
 
   return element;
 }
-
 
 initialElements.forEach((initialElements) => {
   elementsPlace.prepend(addCardElement(initialElements));
