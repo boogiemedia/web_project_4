@@ -13,3 +13,9 @@
   transform: scale(1.05);
   
 }
+@media screen and (max-width: 760px) {
+  .elements__block:hover {
+    transform: scale(1);
+    
+  }
+}
