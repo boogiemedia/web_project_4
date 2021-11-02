@@ -77,7 +77,7 @@ function addCardElement(elementData) {
   element
     .querySelector(".elements__like")
     .addEventListener("click", (event) => {
-      event.target.classList.add("elements__like_type_active");
+      event.target.classList.toggle("elements__like_type_active");
     });
   //opne preview
   element.querySelector(".elements__cover").addEventListener("click", () => {
