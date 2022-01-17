@@ -1,4 +1,3 @@
-// text
 const profileName = document.querySelector(".profile__info");
 const profileSubInfo = document.querySelector(".profile__sub-info");
 //text changable fields
@@ -64,7 +63,7 @@ function openPopUp(popUpList) {
   popUpList.classList.add("popup_oppened");
 }
 // close pop up by submit
-function closePopUp(popUpList) { 
+function closePopUp(popUpList) {
   popUpList.classList.remove("popup_oppened");
 }
 // card edditor
