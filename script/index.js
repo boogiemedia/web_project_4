@@ -117,7 +117,6 @@ profileEdditor.addEventListener("click", () => {
 profileAddCard.addEventListener("click", () => {
   openPopUp(popUpCardEdditor);
 });
-
 //end of btns**************************************************************************
 
 //submit Card
@@ -136,10 +135,15 @@ popUpProfileEdditor.addEventListener("submit", (event) => {
 });
 
 //close elements
-closeButtonList.forEach((btn) =>
-  btn.addEventListener("click", () => {
+function closePopUpEsc(evt) {
+  if (evt.key === "Escape") {
     popUpList.forEach((pop) => pop.classList.remove("popup_oppened"));
-  })
-);
-
+  }
+}
+function closePopUp() {
+  popUpList.forEach((pop) => pop.classList.remove("popup_oppened"));
+}
+closeButtonList.forEach((btn) => btn.addEventListener("click", closePopUp));
+popUpList.forEach((btn) => btn.addEventListener("click", closePopUp));
+popUpList.forEach((btn) => btn.addEventListener("keydown", closePopUpEsc));
 //end of EventListener***********************************************************************
