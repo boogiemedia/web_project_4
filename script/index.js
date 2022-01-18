@@ -149,5 +149,6 @@ popUpList.forEach((btn) => btn.addEventListener("click", e => {
   if (e.target == e.currentTarget) closePopUp(popUpList)
 }));
 //ESC close
-popUpList.forEach((btn) => btn.addEventListener("keydown", closePopUpEsc));
+document.addEventListener("keydown", closePopUpEsc)
+//popUpList.forEach((btn) => btn.addEventListener("keydown", closePopUpEsc));
 //end of EventListener***********************************************************************

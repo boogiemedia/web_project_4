@@ -29,8 +29,14 @@ function enableValidation(settings) {
         errorElement.textContent = ' '
     }
     function checkValidity(input) {
-        if (input.validity.valid) { hideError(input) }
-        else { showError(input) }
+        if (input.validity.valid) {
+            input.classList.remove("popup__input_error");
+            hideError(input)
+        }
+        else {
+            input.classList.add("popup__input_error");
+            showError(input)
+        }
     }
     function toggleButtonState(inputs, button) {
         const isFormValid = inputs.every(input => input.validity.valid)
