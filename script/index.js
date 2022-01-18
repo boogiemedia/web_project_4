@@ -88,6 +88,7 @@ function createCardElement(elementData) {
       elementData.name;
     popUpPreview.querySelector(".popup__preview").alt = elementData.name;
     popUpPreview.querySelector(".popup__preview").src = elementData.link;
+
   });
 
   return element;
@@ -136,14 +137,17 @@ popUpProfileEdditor.addEventListener("submit", (event) => {
 
 //close elements
 function closePopUpEsc(evt) {
-  if (evt.key === "Escape") {
-    popUpList.forEach((pop) => pop.classList.remove("popup_oppened"));
-  }
+  if (evt.key === "Escape") { closePopUp(popUpList) }
 }
-function closePopUp() {
+function closePopUp(evt) {
   popUpList.forEach((pop) => pop.classList.remove("popup_oppened"));
 }
+//Close Button
 closeButtonList.forEach((btn) => btn.addEventListener("click", closePopUp));
-popUpList.forEach((btn) => btn.addEventListener("click", closePopUp));
+//overlay close
+popUpList.forEach((btn) => btn.addEventListener("click", e => {
+  if (e.target == e.currentTarget) closePopUp(popUpList)
+}));
+//ESC close
 popUpList.forEach((btn) => btn.addEventListener("keydown", closePopUpEsc));
 //end of EventListener***********************************************************************
