@@ -1,3 +1,6 @@
+import { initialElements } from "./cards.js";
+import { config, enableValidation } from "./validation.js";
+//...............End Of Import Moduls....................................
 const profileName = document.querySelector(".profile__info");
 const profileSubInfo = document.querySelector(".profile__sub-info");
 //text changable fields
@@ -8,11 +11,11 @@ const descriptionChanger = document.querySelector(
 const cardName = document.querySelector(".popup__input_type_title");
 const cardLink = document.querySelector(".popup__input_type_link");
 //buttons
-const profileEdditor = document.querySelector(".profile__edit-button");
+const openProfileEdditor = document.querySelector(".profile__edit-button");
 const profileAddCard = document.querySelector(".profile__add-button");
 const closeButtonList = document.querySelectorAll(".popup__close-button");
-const submitBtn = document.querySelectorAll(".popup__save-button");
-const trash = document.querySelectorAll(".elements__trash");
+
+
 //popups
 const popUpList = document.querySelectorAll(".popup");
 const popUpProfileEdditor = document.querySelector(
@@ -28,43 +31,10 @@ const elementTemplate = document
   .content.querySelector(".elements__block");
 //end of variables*************************************************************************
 
-//Cards
-const initialElements = [
-  {
-    name: "Yosemite Valley",
-    link: "https://code.s3.yandex.net/web-code/yosemite.jpg",
-  },
-  {
-    name: "Lake Louise",
-    link: "https://code.s3.yandex.net/web-code/lake-louise.jpg",
-  },
-  {
-    name: "Bald Mountains",
-    link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg",
-  },
-  {
-    name: "Latemar",
-    link: "https://code.s3.yandex.net/web-code/latemar.jpg",
-  },
-  {
-    name: "Vanoise National Park",
-    link: "https://code.s3.yandex.net/web-code/vanoise.jpg",
-  },
-  {
-    name: "Lago di Braies",
-    link: "https://code.s3.yandex.net/web-code/lago.jpg",
-  },
-];
-
-// end of card list****************************************************************************
-
 //popup open
 function openPopUp(popUpList) {
+
   popUpList.classList.add("popup_oppened");
-}
-// close pop up by submit
-function closePopUp(popUpList) {
-  popUpList.classList.remove("popup_oppened");
 }
 // card edditor
 function createCardElement(elementData) {
@@ -108,7 +78,7 @@ function newCardElement() {
 //end of functions**************************************************************************
 
 // profile edditor btn
-profileEdditor.addEventListener("click", () => {
+openProfileEdditor.addEventListener("click", () => {
   openPopUp(popUpProfileEdditor);
   nameChanger.value = profileName.textContent;
   descriptionChanger.value = profileSubInfo.textContent;
@@ -139,6 +109,7 @@ popUpProfileEdditor.addEventListener("submit", (event) => {
 function closePopUpEsc(evt) {
   if (evt.key === "Escape") { closePopUp(popUpList) }
 }
+
 function closePopUp(evt) {
   popUpList.forEach((pop) => pop.classList.remove("popup_oppened"));
 }
@@ -150,5 +121,4 @@ popUpList.forEach((btn) => btn.addEventListener("click", e => {
 }));
 //ESC close
 document.addEventListener("keydown", closePopUpEsc)
-//popUpList.forEach((btn) => btn.addEventListener("keydown", closePopUpEsc));
 //end of EventListener***********************************************************************

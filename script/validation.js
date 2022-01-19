@@ -3,7 +3,7 @@ const config = {
     inputSelector: ".popup__input",
     submitButtonSelector: ".popup__save-button",
     inactiveButtonClass: "popup__save-button_disabled",
-    inputErrorClass: "popup__input_type_error",
+    inputErrorClass: "popup__input_error",
     errorClass: "popup__error_visible"
 }
 function enableValidation(settings) {
@@ -30,11 +30,11 @@ function enableValidation(settings) {
     }
     function checkValidity(input) {
         if (input.validity.valid) {
-            input.classList.remove("popup__input_error");
+            input.classList.remove(inputErrorClass);
             hideError(input)
         }
         else {
-            input.classList.add("popup__input_error");
+            input.classList.add(inputErrorClass);
             showError(input)
         }
     }
@@ -42,12 +42,13 @@ function enableValidation(settings) {
         const isFormValid = inputs.every(input => input.validity.valid)
         if (isFormValid) {
             button.disabled = false
-            button.classList.remove(config.inactiveButtonClass)
+            button.classList.remove(inactiveButtonClass)
         }
         else {
             button.disabled = true
-            button.classList.add(config.inactiveButtonClass)
+            button.classList.add(inactiveButtonClass)
         }
     }
 }
 enableValidation(config);
+export { config, enableValidation };
