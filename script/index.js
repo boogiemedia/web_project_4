@@ -21,7 +21,7 @@ const popUpList = document.querySelectorAll(".popup");
 const popUpProfileEdditor = document.querySelector(
   ".popup_type_profile-edditor"
 );
-const popUpCardEdditor = document.querySelector(".popup_type_card-edditor");
+const popUpcardEditor = document.querySelector(".popup_type_card-editor");
 const popUpPreview = document.querySelector(".popup_type_preview");
 
 //cards elements
@@ -33,7 +33,7 @@ const elementTemplate = document
 
 //popup open
 function openPopUp(popUpList) {
-
+  addEsc()
   popUpList.classList.add("popup_oppened");
 }
 // card edditor
@@ -68,12 +68,26 @@ initialElements.forEach((initialElements) => {
   elementsPlace.prepend(createCardElement(initialElements));
 });
 
-function newCardElement() {
+function addNewCardElement() {
   const addNewCard = createCardElement({
     name: cardName.value,
     link: cardLink.value,
   });
   elementsPlace.prepend(addNewCard);
+}
+function addEsc() {
+  document.addEventListener("keydown", closePopUpEsc)
+}
+function removeEsc() {
+  document.removeEventListener("keydown", closePopUpEsc)
+}
+function closePopUpEsc(evt) {
+  if (evt.key === "Escape") { closePopUp(popUpList) }
+}
+
+function closePopUp(evt) {
+  popUpList.forEach((pop) => pop.classList.remove("popup_oppened"));
+  removeEsc
 }
 //end of functions**************************************************************************
 
@@ -86,15 +100,15 @@ openProfileEdditor.addEventListener("click", () => {
 
 //card edditor btn
 profileAddCard.addEventListener("click", () => {
-  openPopUp(popUpCardEdditor);
+  openPopUp(popUpcardEditor);
 });
 //end of btns**************************************************************************
 
 //submit Card
-popUpCardEdditor.addEventListener("submit", (event) => {
+popUpcardEditor.addEventListener("submit", (event) => {
   event.preventDefault();
-  newCardElement();
-  closePopUp(popUpCardEdditor);
+  addNewCardElement();
+  closePopUp(popUpcardEditor);
 });
 
 //submit profile
@@ -105,14 +119,7 @@ popUpProfileEdditor.addEventListener("submit", (event) => {
   closePopUp(popUpProfileEdditor);
 });
 
-//close elements
-function closePopUpEsc(evt) {
-  if (evt.key === "Escape") { closePopUp(popUpList) }
-}
 
-function closePopUp(evt) {
-  popUpList.forEach((pop) => pop.classList.remove("popup_oppened"));
-}
 //Close Button
 closeButtonList.forEach((btn) => btn.addEventListener("click", closePopUp));
 //overlay close
@@ -120,5 +127,4 @@ popUpList.forEach((btn) => btn.addEventListener("click", e => {
   if (e.target == e.currentTarget) closePopUp(popUpList)
 }));
 //ESC close
-document.addEventListener("keydown", closePopUpEsc)
 //end of EventListener***********************************************************************
