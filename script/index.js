@@ -1,5 +1,5 @@
 import { initialElements } from "./cards.js";
-import { config, enableValidation } from "./validation.js";
+import { enableValidation } from "./validation.js";
 //...............End Of Import Moduls....................................
 const profileName = document.querySelector(".profile__info");
 const profileSubInfo = document.querySelector(".profile__sub-info");
@@ -75,6 +75,7 @@ function addNewCardElement() {
   });
   elementsPlace.prepend(addNewCard);
 }
+//Closing functions
 function addEsc() {
   document.addEventListener("keydown", closePopUpEsc)
 }
@@ -82,12 +83,14 @@ function removeEsc() {
   document.removeEventListener("keydown", closePopUpEsc)
 }
 function closePopUpEsc(evt) {
-  if (evt.key === "Escape") { closePopUp(popUpList) }
+  if (evt.key === "Escape") {
+    closePopUp(popUpList)
+  }
 }
 
 function closePopUp(evt) {
   popUpList.forEach((pop) => pop.classList.remove("popup_oppened"));
-  removeEsc
+  removeEsc()
 }
 //end of functions**************************************************************************
 

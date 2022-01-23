@@ -4,10 +4,9 @@ const config = {
     submitButtonSelector: ".popup__save-button",
     inactiveButtonClass: "popup__save-button_disabled",
     inputErrorClass: "popup__input_error",
-    errorClass: "popup__error_visible"
 }
 function enableValidation(settings) {
-    const { formSelector, inputSelector, submitButtonSelector, inactiveButtonClass, inputErrorClass, errorClass } = settings
+    const { formSelector, inputSelector, submitButtonSelector, inactiveButtonClass, inputErrorClass } = settings
     const forms = [...document.querySelectorAll(formSelector)]
     forms.forEach(form => {
         addEventListener('submit', (e) => e.preventDefault())
@@ -51,4 +50,4 @@ function enableValidation(settings) {
     }
 }
 enableValidation(config);
-export { config, enableValidation };
+export { enableValidation };
