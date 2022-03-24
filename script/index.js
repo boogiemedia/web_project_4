@@ -1,6 +1,23 @@
 import { initialElements } from "./cards.js";
-import { enableValidation } from "./validation.js";
+import FormValidator from "./formValidator.js"
 //...............End Of Import Moduls....................................
+const settings = {
+  formSelector: ".popup__form",
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__save-button",
+  inactiveButtonClass: "popup__save-button_disabled",
+  inputErrorClass: "popup__input_error",
+}
+//..............End Of settings.....................
+const editForm = document.querySelector(".popup_type_profile-edditor");
+const addCardForm = document.querySelector(".popup_type_card-editor");
+const editFormValidator = new FormValidator(settings, editForm);
+const addCardFormValidator = new FormValidator(settings, addCardForm);
+editFormValidator.enableValidation()
+addCardFormValidator.enableValidation()
+
+//.........................end Of Form Validation..................................
+
 const profileName = document.querySelector(".profile__info");
 const profileSubInfo = document.querySelector(".profile__sub-info");
 //text changable fields
@@ -96,6 +113,7 @@ function closePopUp(evt) {
 
 // profile edditor btn
 openProfileEdditor.addEventListener("click", () => {
+  editFormValidator.resetValidation()
   openPopUp(popUpProfileEdditor);
   nameChanger.value = profileName.textContent;
   descriptionChanger.value = profileSubInfo.textContent;
@@ -103,6 +121,7 @@ openProfileEdditor.addEventListener("click", () => {
 
 //card edditor btn
 profileAddCard.addEventListener("click", () => {
+  addCardFormValidator.resetValidation()
   openPopUp(popUpcardEditor);
 });
 //end of btns**************************************************************************
