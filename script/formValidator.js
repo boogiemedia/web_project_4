@@ -1,3 +1,4 @@
+ const popUpPreview = document.querySelector(".popup_type_preview");
 export default class FormValidator {
     constructor(settings, form) {
         this.settings = settings;
@@ -36,13 +37,13 @@ export default class FormValidator {
         }
     }
     _setEventListeners = () => {
-        const { inputSelector, submitButtonSelector, formSelector } = this.settings
+        const { inputSelector, submitButtonSelector } = this.settings
         this.inputList = [...this.form.querySelectorAll(inputSelector)]
         const button = this.form.querySelector(submitButtonSelector)
         this.inputList.forEach(input => {
             input.addEventListener('input', () => {
                 this._checkValidity(input)
-                this._toggleButtonState(this.inputList, button)
+                this.toggleButtonState(this.inputList, button)
             });
         });
 
@@ -58,7 +59,7 @@ export default class FormValidator {
             this._showError(input)
         }
     }
-    _toggleButtonState(inputList, button) {
+    toggleButtonState(inputList, button) {
         const { inactiveButtonClass } = this.settings;
         const isFormValid = this.inputList.every(input => input.validity.valid)
         if (isFormValid) {

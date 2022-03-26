@@ -1,62 +1,90 @@
-import {editForm, elementsPlace,addCardForm, popUpcardEditor, profileName, popUpProfileEdditor, profileSubInfo, cardName, cardLink, openPopUp, closePopUp, popUpList, nameChanger, descriptionChanger } from "./utils.js"
-import {initialElements} from "./initialElements.js";
+import { openPopUp, closePopUp } from "./utils.js";
+import { initialElements } from "./initialElements.js";
 import FormValidator from "./formValidator.js";
 import Card from "./cards.js";
 
 //...............End Of Import Moduls....................................
+
+const editForm = document.querySelector(".popup_type_profile-edditor");
+const addCardForm = document.querySelector(".popup_type_card-editor");
+
+const profileName = document.querySelector(".profile__info");
+const profileSubInfo = document.querySelector(".profile__sub-info");
+
+const elementsPlace = document.querySelector(".elements");
+const cardName = document.querySelector(".popup__input_type_title");
+const cardLink = document.querySelector(".popup__input_type_link");
+
+const popUpcardEditor = document.querySelector(".popup_type_card-editor");
+const popUpProfileEdditor = document.querySelector(
+  ".popup_type_profile-edditor"
+);
+const nameChanger = document.querySelector(".popup__input_type_name");
+const descriptionChanger = document.querySelector(
+  ".popup__input_type_description"
+);
+
+//..................End of variables..........................................
 const settings = {
   formSelector: ".popup__form",
   inputSelector: ".popup__input",
   submitButtonSelector: ".popup__save-button",
   inactiveButtonClass: "popup__save-button_disabled",
-  inputErrorClass: "popup__input_error",}
+  inputErrorClass: "popup__input_error",
+};
 //..............End Of settings.....................
 
 const editFormValidator = new FormValidator(settings, editForm);
 const addCardFormValidator = new FormValidator(settings, addCardForm);
-editFormValidator.enableValidation()
-addCardFormValidator.enableValidation()
+editFormValidator.enableValidation();
+addCardFormValidator.enableValidation();
+
 //.........................end Of Form Validation..................................
 
-
- //open profile edditor
-const openProfileEdditorButton = document.querySelector(".profile__edit-button");
+//open profile edditor
+const openProfileEdditorButton = document.querySelector(
+  ".profile__edit-button"
+);
 openProfileEdditorButton.addEventListener("click", () => {
-  editFormValidator.resetValidation()
+  editFormValidator.resetValidation();
   openPopUp(popUpProfileEdditor);
   nameChanger.value = profileName.textContent;
-  descriptionChanger.value = profileSubInfo.textContent;});
+  descriptionChanger.value = profileSubInfo.textContent;
+});
 
-  //submit profile
+//submit profile
 popUpProfileEdditor.addEventListener("submit", (event) => {
   event.preventDefault();
   profileName.textContent = nameChanger.value;
   profileSubInfo.textContent = descriptionChanger.value;
-  closePopUp(popUpProfileEdditor);});
+  closePopUp(popUpProfileEdditor);
+});
 //.........................end of profile edditor............................
 
 //new Card popUp
-const profileAddCardButton = document.querySelector(".profile__add-button");
-profileAddCardButton.addEventListener("click", () => {
-  addCardFormValidator.resetValidation()
+const addCardButton = document.querySelector(".profile__add-button");
+addCardButton.addEventListener("click", () => {
+  addCardFormValidator.resetValidation();
   openPopUp(popUpcardEditor);
 });
 
 // card edditor
-const templateSelector = document
-  .querySelector(".elements__template");
+const templateSelector = document.querySelector(".elements__template");
+const renderCard = (cardData) => {
+  const card = new Card(cardData, templateSelector).createCardElement();
+  elementsPlace.prepend(card);
+};
 initialElements.forEach((initialElement) => {
-  elementsPlace.prepend(new Card(initialElement,templateSelector).createCardElement());
+  renderCard(initialElement);
 });
-  function addNewCardElement() {
-    const addNewCard = new Card({
-      name: cardName.value,
-      link: cardLink.value,
-    }, templateSelector );
-    elementsPlace.prepend(addNewCard.createCardElement())}
 
-    popUpcardEditor.addEventListener("submit", (event) => {
-      event.preventDefault();
-      addNewCardElement();
-      closePopUp(popUpcardEditor);});
-  //.......................................end of cards..................................................
+popUpcardEditor.addEventListener("submit", (event) => {
+  event.preventDefault();
+  renderCard({
+    name: cardName.value,
+    link: cardLink.value,
+  });
+  closePopUp(popUpcardEditor);
+ 
+});
+//.......................................end of cards..................................................
