@@ -25,7 +25,7 @@ const descriptionChanger = document.querySelector(
 );
 
 //..................End of variables..........................................
-const settings = {
+export const settings = {
   formSelector: ".popup__form",
   inputSelector: ".popup__input",
   submitButtonSelector: ".popup__save-button",
@@ -35,7 +35,7 @@ const settings = {
 //..............End Of settings.....................
 
 const editFormValidator = new FormValidator(settings, editForm);
-const addCardFormValidator = new FormValidator(settings, addCardForm);
+export const addCardFormValidator = new FormValidator(settings, addCardForm);
 editFormValidator.enableValidation();
 addCardFormValidator.enableValidation();
 
@@ -65,13 +65,14 @@ popUpProfileEdditor.addEventListener("submit", (event) => {
 const addCardButton = document.querySelector(".profile__add-button");
 addCardButton.addEventListener("click", () => {
   addCardFormValidator.resetValidation();
+  addCardFormValidator.toggleButtonState()
   openPopUp(popUpcardEditor);
 });
 
 // card edditor
-const templateSelector = document.querySelector(".elements__template");
+const template = document.querySelector(".elements__template");
 const renderCard = (cardData) => {
-  const card = new Card(cardData, templateSelector).createCardElement();
+  const card = new Card(cardData, template).createCardElement();
   elementsPlace.prepend(card);
 };
 initialElements.forEach((initialElement) => {

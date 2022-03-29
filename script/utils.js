@@ -20,7 +20,6 @@ popUp.forEach((btn) =>
 export function openPopUp(popUp) {
   addEscEventListener();
   popUp.classList.add("popup_oppened");
-  addCardFormValidator.enableValidation();
 }
 export function closePopUp(evt) {
   const openedPopup = document.querySelector(".popup_oppened");
