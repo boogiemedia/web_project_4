@@ -25,7 +25,7 @@ const descriptionChanger = document.querySelector(
 );
 
 //..................End of variables..........................................
-export const settings = {
+const settings = {
   formSelector: ".popup__form",
   inputSelector: ".popup__input",
   submitButtonSelector: ".popup__save-button",
@@ -35,7 +35,7 @@ export const settings = {
 //..............End Of settings.....................
 
 const editFormValidator = new FormValidator(settings, editForm);
-export const addCardFormValidator = new FormValidator(settings, addCardForm);
+const addCardFormValidator = new FormValidator(settings, addCardForm);
 editFormValidator.enableValidation();
 addCardFormValidator.enableValidation();
 
