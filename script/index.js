@@ -66,7 +66,6 @@ addCardButton.addEventListener("click", () => {
   const formReset = addCardPopUp.querySelector('form').reset()
   addCardFormValidator.toggleButtonState()
   openPopUp(popUpcardEditor);
-
 });
 
 // card edditor
