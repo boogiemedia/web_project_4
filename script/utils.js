@@ -34,9 +34,6 @@ export function closePopUpEsc(evt) {
   }
 }
 
-export function formReset() {
-  document.getElementById("form").reset();
-}
 function addEscEventListener() {
   document.addEventListener("keydown", closePopUpEsc);
 }

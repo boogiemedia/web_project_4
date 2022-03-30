@@ -1,4 +1,4 @@
-import { openPopUp, closePopUp, formReset } from "./utils.js";
+import { openPopUp, closePopUp } from "./utils.js";
 import { initialElements } from "./initialElements.js";
 import FormValidator from "./formValidator.js";
 import Card from "./cards.js";
@@ -65,8 +65,8 @@ popUpProfileEdditor.addEventListener("submit", (event) => {
 const addCardButton = document.querySelector(".profile__add-button");
 addCardButton.addEventListener("click", () => {
   addCardFormValidator.resetValidation();
+  addCardForm.reset()
   addCardFormValidator.toggleButtonState()
-  formReset()
   openPopUp(popUpcardEditor);
 
 });
