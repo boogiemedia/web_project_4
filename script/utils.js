@@ -1,8 +1,6 @@
 
 
 export const popUp = document.querySelectorAll(".popup");
-
-
 //...........End Of Constants..................
 
 const closeButtonList = document.querySelectorAll(".popup__close-button");
@@ -25,7 +23,6 @@ export function closePopUp(evt) {
   const openedPopup = document.querySelector(".popup_oppened");
   openedPopup.classList.remove("popup_oppened");
   removeEscEventListener();
-
 }
 
 export function closePopUpEsc(evt) {

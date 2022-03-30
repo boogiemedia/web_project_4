@@ -2,11 +2,10 @@ import { openPopUp, closePopUp } from "./utils.js";
 import { initialElements } from "./initialElements.js";
 import FormValidator from "./formValidator.js";
 import Card from "./cards.js";
-
 //...............End Of Import Moduls....................................
 
 const editForm = document.querySelector(".popup_type_profile-edditor");
-const addCardForm = document.querySelector(".popup_type_card-editor");
+const addCardPopUp = document.querySelector(".popup_type_card-editor");
 
 const profileName = document.querySelector(".profile__info");
 const profileSubInfo = document.querySelector(".profile__sub-info");
@@ -23,8 +22,8 @@ const nameChanger = document.querySelector(".popup__input_type_name");
 const descriptionChanger = document.querySelector(
   ".popup__input_type_description"
 );
-
 //..................End of variables..........................................
+
 const settings = {
   formSelector: ".popup__form",
   inputSelector: ".popup__input",
@@ -35,10 +34,9 @@ const settings = {
 //..............End Of settings.....................
 
 const editFormValidator = new FormValidator(settings, editForm);
-const addCardFormValidator = new FormValidator(settings, addCardForm);
+const addCardFormValidator = new FormValidator(settings, addCardPopUp);
 editFormValidator.enableValidation();
 addCardFormValidator.enableValidation();
-
 //.........................end Of Form Validation..................................
 
 //open profile edditor
@@ -65,7 +63,7 @@ popUpProfileEdditor.addEventListener("submit", (event) => {
 const addCardButton = document.querySelector(".profile__add-button");
 addCardButton.addEventListener("click", () => {
   addCardFormValidator.resetValidation();
-  addCardForm.reset()
+  const formReset = addCardPopUp.querySelector('form').reset()
   addCardFormValidator.toggleButtonState()
   openPopUp(popUpcardEditor);
 
@@ -88,6 +86,5 @@ popUpcardEditor.addEventListener("submit", (event) => {
     link: cardLink.value,
   });
   closePopUp(popUpcardEditor);
-
 });
 //.......................................end of cards..................................................
