@@ -14,8 +14,8 @@ const elementsPlace = document.querySelector(".elements");
 const cardName = document.querySelector(".popup__input_type_title");
 const cardLink = document.querySelector(".popup__input_type_link");
 
-const popUpcardEditor = document.querySelector(".popup_type_card-editor");
-const popUpProfileEdditor = document.querySelector(
+const popUpCardEditor = document.querySelector(".popup_type_card-editor");
+const popupProfileEditor = document.querySelector(
   ".popup_type_profile-edditor"
 );
 const nameChanger = document.querySelector(".popup__input_type_name");
@@ -45,17 +45,17 @@ const openProfileEdditorButton = document.querySelector(
 );
 openProfileEdditorButton.addEventListener("click", () => {
   editFormValidator.resetValidation();
-  openPopUp(popUpProfileEdditor);
+  openPopUp(popupProfileEditor);
   nameChanger.value = profileName.textContent;
   descriptionChanger.value = profileSubInfo.textContent;
 });
 
 //submit profile
-popUpProfileEdditor.addEventListener("submit", (event) => {
+popupProfileEditor.addEventListener("submit", (event) => {
   event.preventDefault();
   profileName.textContent = nameChanger.value;
   profileSubInfo.textContent = descriptionChanger.value;
-  closePopUp(popUpProfileEdditor);
+  closePopUp(popupProfileEditor);
 });
 //.........................end of profile edditor............................
 
@@ -65,7 +65,7 @@ addCardButton.addEventListener("click", () => {
   addCardFormValidator.resetValidation();
   const formReset = addCardPopUp.querySelector('form').reset()
   addCardFormValidator.toggleButtonState()
-  openPopUp(popUpcardEditor);
+  openPopUp(popUpCardEditor);
 });
 
 // card edditor
@@ -78,12 +78,12 @@ initialElements.forEach((initialElement) => {
   renderCard(initialElement);
 });
 
-popUpcardEditor.addEventListener("submit", (event) => {
+popUpCardEditor.addEventListener("submit", (event) => {
   event.preventDefault();
   renderCard({
     name: cardName.value,
     link: cardLink.value,
   });
-  closePopUp(popUpcardEditor);
+  closePopUp(popUpCardEditor);
 });
 //.......................................end of cards..................................................
