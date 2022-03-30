@@ -25,7 +25,6 @@ export function closePopUp(evt) {
   const openedPopup = document.querySelector(".popup_oppened");
   openedPopup.classList.remove("popup_oppened");
   removeEscEventListener();
-  formReset();
 
 }
 
@@ -35,7 +34,7 @@ export function closePopUpEsc(evt) {
   }
 }
 
-function formReset() {
+export function formReset() {
   document.getElementById("form").reset();
 }
 function addEscEventListener() {

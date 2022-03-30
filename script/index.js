@@ -1,4 +1,4 @@
-import { openPopUp, closePopUp } from "./utils.js";
+import { openPopUp, closePopUp, formReset } from "./utils.js";
 import { initialElements } from "./initialElements.js";
 import FormValidator from "./formValidator.js";
 import Card from "./cards.js";
@@ -66,7 +66,9 @@ const addCardButton = document.querySelector(".profile__add-button");
 addCardButton.addEventListener("click", () => {
   addCardFormValidator.resetValidation();
   addCardFormValidator.toggleButtonState()
+  formReset()
   openPopUp(popUpcardEditor);
+
 });
 
 // card edditor
@@ -86,6 +88,6 @@ popUpcardEditor.addEventListener("submit", (event) => {
     link: cardLink.value,
   });
   closePopUp(popUpcardEditor);
- 
+
 });
 //.......................................end of cards..................................................
