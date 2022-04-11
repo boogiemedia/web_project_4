@@ -1,7 +1,7 @@
 import { openPopUp, closePopUp } from "./utils.js";
 import { initialElements } from "./initialElements.js";
 import FormValidator from "./formValidator.js";
-import Card from "./cards.js";
+import Card from "./card.js";
 //...............End Of Import Moduls....................................
 
 const editForm = document.querySelector(".popup_type_profile-edditor");
