@@ -1,13 +1,14 @@
-import {openPopUp } from "./utils.js";
+
 const popUpPreview = document.querySelector(".popup_type_preview");
 
 export default class Card {
-  constructor(data, templateSelector) {
+  constructor(data, templateSelector, handleCardClick) {
     this._name = data.name;
     this._link = data.link;
     this._templateSelector = templateSelector;
     this._elementTemplate =
     this._templateSelector.content.querySelector(".elements__block");
+    this._handleCardClick = handleCardClick;
   }
 
   createCardElement() {
@@ -34,13 +35,13 @@ export default class Card {
     //opne preview
     this._element
       .querySelector(".elements__cover")
-      .addEventListener("click", () => {
-        openPopUp(popUpPreview);
-        popUpPreview.querySelector(".popup__preview-text").textContent =
-          this._name;
-        popUpPreview.querySelector(".popup__preview").alt = this._name;
-        popUpPreview.querySelector(".popup__preview").src = this._link;
-      });
+      .addEventListener("click", () => this._handleCardClick( this._name, this._link)
+        //openPopUp(popUpPreview);
+        //popUpPreview.querySelector(".popup__preview-text").textContent =
+          //this._name;
+        //popUpPreview.querySelector(".popup__preview").alt = this._name;
+        //popUpPreview.querySelector(".popup__preview").src = this._link;
+      );
     return this._element;
   }
 }

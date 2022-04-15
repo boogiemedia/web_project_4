@@ -1,5 +1,6 @@
 
 
+
 export const popUp = document.querySelectorAll(".popup");
 //...........End Of Constants..................
 
