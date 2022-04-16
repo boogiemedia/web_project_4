@@ -10,9 +10,9 @@
            description: this._userJob.textContent
         }
     }
-    setUserInfo({name, description}){
-        this._userName.textContent = name
-        this._userJob.textContent = description
+    setUserInfo({Name, AboutMe}){
+        this._userName.textContent = Name
+        this._userJob.textContent = AboutMe
 
     }
 }
