@@ -1,11 +1,11 @@
-import "./styles/index.css";
-import { initialElements } from "./script/initialElements.js";
-import FormValidator from "./script/formValidator.js";
-import Card from "./script/card.js";
-import PopupWithImage from "./script/PopupWithImage.js";
-import PopupWithForm from "./script/PopupWithForm .js";
-import UserInfo from "./script/UserInfo .js";
-import Section from "./script/section.js";
+import "./index.css";
+import { initialElements } from "../utils/initialElements.js";
+import FormValidator from "../components/formValidator.js";
+import Card from "../components/card.js";
+import PopupWithImage from "../components/PopupWithImage.js";
+import PopupWithForm from "../components/PopupWithForm .js";
+import UserInfo from "../components/UserInfo .js";
+import Section from "../components/section.js";
 //...............End Of Import Moduls....................................
 const elementsPlace = document.querySelector(".elements");
 const nameChanger = document.querySelector(".popup__input_type_name");
@@ -13,7 +13,7 @@ const descriptionChanger = document.querySelector(".popup__input_type_descriptio
 const cardName = document.querySelector(".popup__input_type_title");
 const cardLink = document.querySelector(".popup__input_type_link");
 //..................End of variables..........................................
-const userinfo = new UserInfo({
+const userInfo = new UserInfo({
   userNameSelector: ".profile__info", 
   userJobSelector: ".profile__sub-info" })
   //......................End of user Info......................................
@@ -35,16 +35,16 @@ addCardFormValidator.enableValidation();
 
 
 //profile popup
-const openProfileEdditorButton = document.querySelector(".profile__edit-button");
+const openProfileEditorButton = document.querySelector(".profile__edit-button");
 const profileForm = new PopupWithForm(".popup_type_profile-edditor", (data) => {
-  userinfo.setUserInfo(data)
+  userInfo.setUserInfo(data)
 })
 profileForm.setEventListeners()
-openProfileEdditorButton.addEventListener("click", () => {
+openProfileEditorButton.addEventListener("click", () => {
   
   editFormValidator.resetValidation();
   profileForm.open();
-  const data = userinfo.getUserInfo()
+  const data = userInfo.getUserInfo()
   nameChanger.value = data.name
   descriptionChanger.value = data.description
 });
@@ -52,10 +52,12 @@ openProfileEdditorButton.addEventListener("click", () => {
 
 //add new Card popUp
 const addCardButton = document.querySelector(".profile__add-button");
-const cardForm = new PopupWithForm(".popup_type_card-editor", ()=>{renderCard({
+const cardForm = new PopupWithForm(".popup_type_card-editor", ()=>{
+  renderCard({
   name: cardName.value,
   link: cardLink.value,
-});})
+});
+})
 cardForm.setEventListeners()
 addCardButton.addEventListener("click", ()=> {
   editFormValidator.resetValidation()
