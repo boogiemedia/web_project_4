@@ -1,10 +1,11 @@
-import { initialElements } from "./initialElements.js";
-import FormValidator from "./formValidator.js";
-import Card from "./card.js";
-import PopupWithImage from "./PopupWithImage.js";
-import PopupWithForm from "./PopupWithForm .js";
-import UserInfo from "./UserInfo .js";
-import Section from "./section.js";
+import "./styles/index.css";
+import { initialElements } from "./script/initialElements.js";
+import FormValidator from "./script/formValidator.js";
+import Card from "./script/card.js";
+import PopupWithImage from "./script/PopupWithImage.js";
+import PopupWithForm from "./script/PopupWithForm .js";
+import UserInfo from "./script/UserInfo .js";
+import Section from "./script/section.js";
 //...............End Of Import Moduls....................................
 const elementsPlace = document.querySelector(".elements");
 const nameChanger = document.querySelector(".popup__input_type_name");

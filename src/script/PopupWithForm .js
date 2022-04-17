@@ -16,7 +16,6 @@ export default class PopupWithForm extends Popup {
         
     }
     close() {
-
         super.close()
         this._form.reset()
     }
@@ -27,7 +26,6 @@ export default class PopupWithForm extends Popup {
             this.close()
         })
         super.setEventListeners()
-        //this._popupElement.querySelector(this._form).addEventListener("submit", this._submitHandler)
     }
     close() {
         super.close()
