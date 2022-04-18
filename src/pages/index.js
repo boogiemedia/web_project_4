@@ -1,3 +1,4 @@
+import avatarSrc from "../images/profile.jpg";
 import "./index.css";
 import { initialElements } from "../utils/initialElements.js";
 import FormValidator from "../components/formValidator.js";
@@ -7,6 +8,9 @@ import PopupWithForm from "../components/PopupWithForm .js";
 import UserInfo from "../components/UserInfo .js";
 import Section from "../components/section.js";
 //...............End Of Import Moduls....................................
+const avatarimg = document.getElementById("profile-avatar");
+avatarimg.src = avatarSrc
+//..................end of src list.....................................
 const elementsPlace = document.querySelector(".elements");
 const nameChanger = document.querySelector(".popup__input_type_name");
 const descriptionChanger = document.querySelector(".popup__input_type_description");
@@ -53,10 +57,11 @@ openProfileEditorButton.addEventListener("click", () => {
 //add new Card popUp
 const addCardButton = document.querySelector(".profile__add-button");
 const cardForm = new PopupWithForm(".popup_type_card-editor", ()=>{
-  renderCard({
+  const card = generateCard({
   name: cardName.value,
   link: cardLink.value,
-});
+}); 
+section.addItem(card)
 })
 cardForm.setEventListeners()
 addCardButton.addEventListener("click", ()=> {
@@ -71,14 +76,17 @@ openPreview.setEventListeners()
 
 const template = document.querySelector(".elements__template");
 const renderCard = (cardData) => {
-  const card = new Card(cardData, template, (text, link) => {openPreview.open(text, link)
-  }).createCardElement();
+ const card = generateCard(cardData)
   elementsPlace.prepend(card);
 };
-
+const generateCard = (cardData) =>{
+  return new Card(cardData, template, (text, link) => {openPreview.open(text, link)
+  }).createCardElement();
+}
 
 const section = new Section({items: initialElements, renderer: (data)=> 
   {renderCard(data)}}, elementsPlace)
 section.render()
 //.......................................end of cards rendering..................................................
+
 
