@@ -1,5 +1,6 @@
 import avatarSrc from "../images/profile.jpg";
 import "./index.css";
+import Api from "../components/Api.js";
 import { initialElements } from "../utils/initialElements.js";
 import FormValidator from "../components/formValidator.js";
 import Card from "../components/card.js";
@@ -73,6 +74,18 @@ addCardButton.addEventListener("click", ()=> {
 const openPreview = new PopupWithImage(".popup_type_preview")
 openPreview.setEventListeners()
 //......................................... end of popups......................................
+const api = new Api({
+  baseUrl: "https://around.nomoreparties.co/v1/group-12",
+  token: "3b0591f5-8d80-48af-bfb2-1499d5045304",
+    "Content-Type": "application/json"
+}); 
+
+api.getInitialCards()
+.then((data) => new Section({items: data, renderer: (data)=> 
+  {renderCard(data)}}, elementsPlace)
+.render()
+)
+ 
 
 const template = document.querySelector(".elements__template");
 const renderCard = (cardData) => {
@@ -83,10 +96,6 @@ const generateCard = (cardData) =>{
   return new Card(cardData, template, (text, link) => {openPreview.open(text, link)
   }).createCardElement();
 }
-
-const section = new Section({items: initialElements, renderer: (data)=> 
-  {renderCard(data)}}, elementsPlace)
-section.render()
 //.......................................end of cards rendering..................................................
 
 
