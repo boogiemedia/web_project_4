@@ -1,15 +1,24 @@
 
-const popUpPreview = document.querySelector(".popup_type_preview");
 
-export default class Card {
-  constructor(data, templateSelector, handleCardClick) {
+
+export  default class Card {
+  constructor(data, templateSelector, handleCardClick, handleDelete ) {
     this._name = data.name;
     this._link = data.link;
+    this._id = data._id
     this._templateSelector = templateSelector;
     this._elementTemplate =
     this._templateSelector.content.querySelector(".elements__block");
     this._handleCardClick = handleCardClick;
+    this._handleDelete = handleDelete;
+    
+    
   }
+
+ removecard(){
+   this._element.remove()
+ }
+
 
   createCardElement() {
     this._element = this._elementTemplate.cloneNode(true);
@@ -17,13 +26,13 @@ export default class Card {
     this._element.querySelector(
       ".elements__cover"
     ).style.backgroundImage = `url(${this._link})`;
+    
+    //delete btn
+    this._element.querySelector(".elements__trash")
+    .addEventListener("click", () => {
+      this._handleDelete(this._id)
+    });
 
-    //remove element
-    this._element
-      .querySelector(".elements__trash")
-      .addEventListener("click", () => {
-        this._element.remove();
-      });
 
     //like btn
     this._element
@@ -36,11 +45,6 @@ export default class Card {
     this._element
       .querySelector(".elements__cover")
       .addEventListener("click", () => this._handleCardClick( this._name, this._link)
-        //openPopUp(popUpPreview);
-        //popUpPreview.querySelector(".popup__preview-text").textContent =
-          //this._name;
-        //popUpPreview.querySelector(".popup__preview").alt = this._name;
-        //popUpPreview.querySelector(".popup__preview").src = this._link;
       );
     return this._element;
   }
