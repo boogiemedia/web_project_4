@@ -33,6 +33,7 @@ this._token = options.token;
     }
   setInitialProfile(){
     return fetch(`${this._url}/users/me`, {
+      method: 'PATCH',
       headers: 
       {authorization: this._token}
     })
