@@ -17,7 +17,38 @@ this._token = options.token;
           })
           
       } 
-  
+      addNewCard(data){
+        return fetch(`${this._url}/cards`, {
+          method: 'POST',
+          headers: 
+          {authorization: this._token, 'Content-Type': "application/json"},
+          body: JSON.stringify (data)
+        })
+        .then(res => {
+          if (res.ok) {
+            return res.json();
+          }
+          // if the server returns an error, reject the promise
+          return Promise.reject(`Error: ${res.status}`);
+        })
+      } 
+
+      deleteCard(cardId){
+        return fetch(`${this._url}/cards/${cardId} `,{
+          method: "DELETE",
+          headers: {authorization: this._token}
+        })
+        .then(res => {
+          if (res.ok) {
+            return {res}
+          }
+          return Promise.reject(`Error: ${res.status}`)
+        })
+      }
+
+      
+  //.......................End of cards api`s....................
+
     getInitialProfile(){
       return fetch(`${this._url}/users/me`, {
         headers: 
@@ -31,11 +62,11 @@ this._token = options.token;
           return Promise.reject(`Error: ${res.status}`);
         })
     }
-  setInitialProfile(){
+  setInitialProfile(data){
     return fetch(`${this._url}/users/me`, {
       method: 'PATCH',
-      headers: 
-      {authorization: this._token}
+      headers: {authorization: this._token,  'Content-Type': "application/json"},
+      body: JSON.stringify({name: data.name, about: data.about})
     })
       .then(res => {
         if (res.ok) {
@@ -46,42 +77,16 @@ this._token = options.token;
       })
   } 
 
-  addNewCard(data){
-    return fetch(`${this._url}/cards`, {
-      method: 'POST',
-      headers: 
-      {authorization: this._token, 'Content-Type': "application/json"},
-      body: JSON.stringify (data)
-    })
-    .then(res => {
-      if (res.ok) {
-        return res.json();
-      }
-      // if the server returns an error, reject the promise
-      return Promise.reject(`Error: ${res.status}`);
-    })
-  } 
-  setAvatar(){
-    return fetch(`${this._url}/users/me`,{
-      headers:
-      {authorization: this._token}
-    })
-    .then(res => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Error: ${res.status}`)
-    })
-  }
+
   changeavatar(avatar){
     return fetch(`${this._url}/users/me/avatar `,{
-      method: PATCH,
-      headers: {authorization: this._token},
-      body: JSON(avatar)
+      method: 'PATCH',
+      headers: {authorization: this._token, 'Content-Type': "application/json"},
+      body: JSON.stringify(avatar)
     })
     .then(res => {
       if (res.ok) {
-        return {avatar}
+        return console.log(avatar)
       }
       return Promise.reject(`Error: ${res.status}`)
     })
@@ -89,18 +94,7 @@ this._token = options.token;
 
 
 
-  deleteCard(cardId){
-    return fetch(`${this._url}/cards/${cardId} `,{
-      method: "DELETE",
-      headers: {authorization: this._token}
-    })
-    .then(res => {
-      if (res.ok) {
-        return {res}
-      }
-      return Promise.reject(`Error: ${res.status}`)
-    })
-  }
+
   } 
 
 
