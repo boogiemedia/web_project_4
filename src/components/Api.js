@@ -46,6 +46,30 @@ this._token = options.token;
         })
       }
 
+      putlike(cardId){
+        return fetch(`${this._url}/cards/likes/${cardId} `,{
+          method: "PUT",
+          headers: {authorization: this._token,'Content-Type': "application/json"},
+        })
+        .then(res => {
+          if (res.ok) {
+            return {res}
+          }
+          return Promise.reject(`Error: ${res.status}`)
+        })
+      }
+      deleteLike(cardId){
+        return fetch(`${this._url}/cards/likes/${cardId} `,{
+          method: "DELETE",
+          headers: {authorization: this._token,'Content-Type': "application/json"},
+        })
+        .then(res => {
+          if (res.ok) {
+            return {res}
+          }
+          return Promise.reject(`Error: ${res.status}`)
+        })
+      }
       
   //.......................End of cards api`s....................
 
@@ -75,9 +99,7 @@ this._token = options.token;
         // if the server returns an error, reject the promise
         return Promise.reject(`Error: ${res.status}`);
       })
-  } 
-
-
+  }
   changeavatar(avatar){
     return fetch(`${this._url}/users/me/avatar `,{
       method: 'PATCH',
@@ -94,7 +116,7 @@ this._token = options.token;
 
 
 
-
+//....................................................................end of file.................................................
   } 
 
 

@@ -2,20 +2,21 @@
 
 
 export  default class Card {
-  constructor(data, templateSelector, handleCardClick, handleDelete, userId,  ) {
+  constructor(data, templateSelector, handleCardClick, handleDelete,handleLike,deleteLike, userId) {
     this._name = data.name;
     this._data = data
     this._link = data.link;
     this._likes =data.likes
-    this._ownerId = data.owner._Id
-    this._userId =userId
+    this._ownerId = data.owner._id
+    this._userId = userId
     this._id = data._id
     this._templateSelector = templateSelector;
     this._elementTemplate =
     this._templateSelector.content.querySelector(".elements__block");
     this._handleCardClick = handleCardClick;
     this._handleDelete = handleDelete;
-
+    this._handleLike =handleLike;
+    this._deleteLike = deleteLike;
     
     
   }
@@ -31,9 +32,10 @@ export  default class Card {
     this._element.querySelector(
       ".elements__cover"
     ).style.backgroundImage = `url(${this._link})`;
-    //if ( this._ownerId !== this._userId){
-      //this._element.querySelector(".elements__trash").style.display = "none";
-    //}
+    if ( this._ownerId !== this._userId){
+      this._element.querySelector(".elements__trash").style.display = "none";
+    }
+
     //delete btn
     this._element.querySelector(".elements__trash")
     .addEventListener("click", () => {
@@ -50,16 +52,30 @@ export  default class Card {
     this._element
       .querySelector(".elements__like")
       .addEventListener("click", (event) => {
-        event.target.classList.toggle("elements__like_type_active");
-        console.log(this._data, "user", this._userId)
+        
+        const activeLike = event.target.classList.toggle("elements__like_type_active");
+        if (activeLike){
+          console.log(this._userId, this._ownerId)
+          this._handleLike(this._id)
+        }
+        else{
+          this._deleteLike(this._id)
+        }
       });
+     const liked =this._likes.some((pers) => pers._id === this._userId)
+
+     if(liked){
+      console.log("something work")
+      this._element.querySelector(".elements__like").classList.add("elements__like_type_active")
+     }
+
 
     //opne preview
     this._element
       .querySelector(".elements__cover")
       .addEventListener("click", () => this._handleCardClick( this._name, this._link)
       );
-      console.log(this._userId)
+
     return this._element;
   }
 

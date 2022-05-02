@@ -60,6 +60,15 @@ deleteForm.setEventListeners()
 deleteForm.open()
 
     },
+    (id)=>{
+     api.putlike(id).then((id) =>{
+        console.log("liked", id)
+      })
+    },
+    (id)=>{
+     api.deleteLike(id)
+      console.log("deleted", id)
+    },
     userId );
   return card.createCardElement()
 }
