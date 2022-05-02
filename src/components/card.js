@@ -46,7 +46,8 @@ export  default class Card {
 
 
 
-    this._element.querySelector(".elements__like-counter").textContent= this._likes.length;
+   const counter = this._element.querySelector(".elements__like-counter")
+   counter.textContent= this._likes.length;
 
     //like btn
     this._element
@@ -57,9 +58,11 @@ export  default class Card {
         if (activeLike){
           console.log(this._userId, this._ownerId)
           this._handleLike(this._id)
+          counter.textContent= this._likes.length + 1;
         }
         else{
           this._deleteLike(this._id)
+          counter.textContent= this._likes.length - 1;
         }
       });
      const liked =this._likes.some((pers) => pers._id === this._userId)
