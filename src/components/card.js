@@ -26,25 +26,29 @@ export default class Card {
   removeCard() {
     this._element.remove();
   }
-  // updateLikes(likes) { 
-  //   // set instance variable
-  //      this._likes = likes; 
-  //      this._renderLikes(); 
-  //  } 
-  //  _isLiked() {
-  // if() {}
-  //  }
-   
-  //  _renderLikes() {
-  //   // set likes counter content using this._likes
-   
-  //    if (this._isLiked()) {
-  //      // add active class to like button
-  //    } else {
-  //      // remove active class from like button
-  //    }
-  //  }
+  updateLikes(likes) {
+    // set instance variable
+    console.log(this._likes, likes);
+    this._likes = likes;
+    this._renderLikes();
+  }
+  _isLiked() {
+    return this._likes.some((pers) => pers._id === this._userId);
+  }
 
+  _renderLikes() {
+    if (this._isLiked()) {
+      this._element
+        .querySelector(".elements__like")
+        .classList.add("elements__like_type_active");
+    } else {
+      this._element
+        .querySelector(".elements__like")
+        .classList.remove("elements__like_type_active");
+    }
+    const counter = this._element.querySelector(".elements__like-counter");
+    counter.textContent = this._likes.length;
+  }
 
   createCardElement() {
     this._element = this._elementTemplate.cloneNode(true);
@@ -67,32 +71,17 @@ export default class Card {
     counter.textContent = this._likes.length;
 
     //like btn
+    const likeButton = this._element.querySelector(".elements__like");
+    // set _handleLike in the constructor
+    likeButton.addEventListener("click", () => {
+      if (this._isLiked()) {
+        this._deleteLike(this._id);
+      } else {
+        this._handleLike(this._id);
+      }
+    });
 
-
-
-    //old version
-    this._element
-      .querySelector(".elements__like")
-      .addEventListener("click", (event) => {
-        const activeLike = event.target.classList.toggle(
-          "elements__like_type_active"
-        );
-        if (activeLike) {
-          this._handleLike(this._id);
-          counter.textContent = this._likes.length + 1;
-        } else {
-          this._deleteLike(this._id);
-          counter.textContent = this._likes.length;
-        }
-      });
-    const liked = this._likes.some((pers) => pers._id === this._userId);
-
-    if (liked) {
-      this._element
-        .querySelector(".elements__like")
-        .classList.add("elements__like_type_active");
-    }
-
+    this._renderLikes();
 
     //opne preview
     this._element

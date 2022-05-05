@@ -63,11 +63,13 @@ function createCard(data) {
     (id) => {
       api
         .adLike(id)
+        .then((res)=> card.updateLikes(res.likes))
         .catch((id) => console.log("error in adding like", id));
     },
     (id) => {
       api
         .deleteLike(id)
+        .then((res)=> card.updateLikes(res.likes))
         .catch((id) => console.log("error in adding like",id));
     },
     userId
