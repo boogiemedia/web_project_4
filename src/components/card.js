@@ -23,9 +23,29 @@ export default class Card {
     this._handleLike = handleLike;
     this._deleteLike = deleteLike;
   }
-  removecard() {
+  removeCard() {
     this._element.remove();
   }
+  // updateLikes(likes) { 
+  //   // set instance variable
+  //      this._likes = likes; 
+  //      this._renderLikes(); 
+  //  } 
+  //  _isLiked() {
+  // if() {}
+  //  }
+   
+  //  _renderLikes() {
+  //   // set likes counter content using this._likes
+   
+  //    if (this._isLiked()) {
+  //      // add active class to like button
+  //    } else {
+  //      // remove active class from like button
+  //    }
+  //  }
+
+
   createCardElement() {
     this._element = this._elementTemplate.cloneNode(true);
     this._element.querySelector(".elements__title").textContent = this._name;
@@ -47,6 +67,10 @@ export default class Card {
     counter.textContent = this._likes.length;
 
     //like btn
+
+
+
+    //old version
     this._element
       .querySelector(".elements__like")
       .addEventListener("click", (event) => {
@@ -54,7 +78,6 @@ export default class Card {
           "elements__like_type_active"
         );
         if (activeLike) {
-          console.log(this._userId, this._ownerId);
           this._handleLike(this._id);
           counter.textContent = this._likes.length + 1;
         } else {

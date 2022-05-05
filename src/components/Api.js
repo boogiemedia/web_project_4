@@ -3,19 +3,22 @@ export default class Api {
 this._url = options.baseUrl;
 this._token = options.token;
     }
-    _getResponceData(res){}
+
+    _getResponceData(res){
+      if (res.ok) {
+        return res.json();
+      }
+      // if the server returns an error, reject the promise
+      return Promise.reject(`Error: ${res.status}`);
+    }
     getInitialCards() {
         return fetch(`${this._url}/cards`, {
           headers: 
           {authorization: this._token}
         })
-          .then(res => {
-            if (res.ok) {
-              return res.json();
-            }
-            // if the server returns an error, reject the promise
-            return Promise.reject(`Error: ${res.status}`);
-          })
+          .then(res => 
+           this._getResponceData(res)
+          )
           
       } 
       addNewCard(data){
@@ -25,13 +28,9 @@ this._token = options.token;
           {authorization: this._token, 'Content-Type': "application/json"},
           body: JSON.stringify (data)
         })
-        .then(res => {
-          if (res.ok) {
-            return res.json();
-          }
-          // if the server returns an error, reject the promise
-          return Promise.reject(`Error: ${res.status}`);
-        })
+        .then(res => 
+          this._getResponceData(res)
+        )
       } 
 
       deleteCard(cardId){
@@ -39,36 +38,27 @@ this._token = options.token;
           method: "DELETE",
           headers: {authorization: this._token}
         })
-        .then(res => {
-          if (res.ok) {
-            return {res}
-          }
-          return Promise.reject(`Error: ${res.status}`)
-        })
+        .then(res => 
+          this._getResponceData(res)
+        )
       }
       adLike(cardId){
         return fetch(`${this._url}/cards/likes/${cardId} `,{
           method: "PUT",
           headers: {authorization: this._token,'Content-Type': "application/json"},
         })
-        .then(res => {
-          if (res.ok) {
-            return {res}
-          }
-          return Promise.reject(`Error: ${res.status}`)
-        })
+        .then(res => 
+          this._getResponceData(res)
+        )
       }
       deleteLike(cardId){
         return fetch(`${this._url}/cards/likes/${cardId} `,{
           method: "DELETE",
           headers: {authorization: this._token,'Content-Type': "application/json"},
         })
-        .then(res => {
-          if (res.ok) {
-            return {res}
-          }
-          return Promise.reject(`Error: ${res.status}`)
-        })
+        .then(res => 
+          this._getResponceData(res)
+        )
       }
       
   //.......................End of cards api`s....................
@@ -78,40 +68,29 @@ this._token = options.token;
         headers: 
         {authorization: this._token}
       })
-        .then(res => {
-          if (res.ok) {
-            return res.json();
-          }
-          // if the server returns an error, reject the promise
-          return Promise.reject(`Error: ${res.status}`);
-        })
+        .then(res => 
+          this._getResponceData(res)
+        )
     }
-  setInitialProfile(data){
+  setProfile(data){
     return fetch(`${this._url}/users/me`, {
       method: 'PATCH',
       headers: {authorization: this._token,  'Content-Type': "application/json"},
       body: JSON.stringify({name: data.name, about: data.about})
     })
-      .then(res => {
-        if (res.ok) {
-          return res.json();
-        }
-        // if the server returns an error, reject the promise
-        return Promise.reject(`Error: ${res.status}`);
-      })
+      .then(res => 
+        this._getResponceData(res)
+      )
   }
-  changeavatar(avatar){
+  changeAvatar(avatar){
     return fetch(`${this._url}/users/me/avatar `,{
       method: 'PATCH',
       headers: {authorization: this._token, 'Content-Type': "application/json"},
       body: JSON.stringify(avatar)
     })
-    .then(res => {
-      if (res.ok) {
-        return res.json()
-      }
-      return Promise.reject(`Error: ${res.status}`)
-    })
+    .then(res => 
+      this._getResponceData(res)
+    )
   }
 
 

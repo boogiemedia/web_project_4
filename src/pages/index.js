@@ -19,7 +19,6 @@ const template = document.querySelector(".elements__template");
 const profile = document.querySelector(".popup_type_profile-edditor");
 const cardEditor = document.querySelector(".popup_type_card-editor");
 const avatar = document.querySelector(".popup_type_change-profile-picture");
-const trash = document.querySelector(".popup_type_delete-card");
 let userId = "";
 //..................End of selectors..........................................
 const settings = {
@@ -42,6 +41,8 @@ const userInfo = new UserInfo({
   userJobSelector: ".profile__sub-info",
 });
 //......................End of user Info......................................
+const deleteForm = new PopupWithSubmit(".popup_type_delete-card");
+
 function createCard(data) {
   const card = new Card(
     data,
@@ -50,22 +51,24 @@ function createCard(data) {
       openPreview.open(name, link);
     },
     (id) => {
-      const deleteForm = new PopupWithSubmit(".popup_type_delete-card", () => {
+     deleteForm.setHandleSubmit(() => {
         api.deleteCard(id).then((res) => {
-          card.removecard(res);
+          card.removeCard(res);
+          deleteForm.close();
         });
       });
       deleteForm.setEventListeners();
       deleteForm.open();
     },
     (id) => {
-      api.adLike(id).then((id) => {
-        console.log("liked", id);
-      });
+      api
+        .adLike(id)
+        .catch((id) => console.log("error in adding like", id));
     },
     (id) => {
-      api.deleteLike(id);
-      console.log("deleted", id);
+      api
+        .deleteLike(id)
+        .catch((id) => console.log("error in adding like",id));
     },
     userId
   );
@@ -99,11 +102,12 @@ const cardForm = new PopupWithForm(
       .addNewCard(data)
       .then((res) => {
         cardSection.addItem(createCard(res));
+        cardForm.close();
       })
       .catch(() => console.log("error"))
       .finally(() => {
         cardForm.hideLoading();
-        cardForm.close();
+      
       });
   }
 );
@@ -126,7 +130,7 @@ api.getProfile().then((profile) => {
   userId = profile._id;
 });
 //set profile info
-let avatarImg = document.getElementById("profile-avatar");
+const avatarImg = document.getElementById("profile-avatar");
 const openProfileEditorButton = document.querySelector(".profile__edit-button");
 const profileForm = new PopupWithForm(
   ".popup_type_profile-edditor",
@@ -135,7 +139,7 @@ const profileForm = new PopupWithForm(
   (profile) => {
     profileForm.showLoading();
     api
-      .setInitialProfile(profile)
+      .setProfile(profile)
       .then((profile) => {
         userInfo.setUserInfo(profile);
       })
@@ -163,13 +167,13 @@ const avatarForm = new PopupWithForm(
   "saving...",
 
   (avatar) => {
-    avatarForm.showLoading()
+    avatarForm.showLoading();
     api
-      .changeavatar(avatar)
+      .changeAvatar(avatar)
       .then((res) => {
         avatarImg.src = res.avatar;
       })
-      .catch(()=> console.log(error))
+      .catch(() => console.log(error))
       .finally(() => {
         avatarForm.hideLoading();
         avatarForm.close();
