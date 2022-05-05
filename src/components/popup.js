@@ -2,7 +2,7 @@ export default class Popup {
   constructor(popupSelector) {
     this._popupElement = document.querySelector(popupSelector);
     this._handleEscClose = this._handleEscClose.bind(this);
-    //this._handleEmptyClick = this._handleEmptyClick.bind(this);
+  
   }
   _handleEscClose(evt) {
     if (evt.key === "Escape") {
@@ -12,12 +12,11 @@ export default class Popup {
 
   open() {
     this._popupElement.classList.add("popup_oppened");
-    document.addEventListener("keyup", this._handleEscClose.bind(this));
+    document.addEventListener("keyup", this._handleEscClose);
   }
   close() {
     this._popupElement.classList.remove("popup_oppened");
-
-    document.removeEventListener("keyup", this._handleEscClose.bind(this));
+    document.removeEventListener("keyup", this._handleEscClose);
   }
   setEventListeners() {
     this._popupElement
@@ -31,4 +30,5 @@ export default class Popup {
       }
     });
   }
+  
 }

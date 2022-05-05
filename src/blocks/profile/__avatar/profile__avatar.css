@@ -1,10 +1,38 @@
+
 .profile__avatar{
-    width: 128px;
-    height: 128px;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
     border-radius: 50%;
+    transition: .3s ease;
+    
 }
-.profile__avatar:hover {
-    background-image: url("../../../images/heart.svg");
- 
-   opacity: 0.5;
+.profile__avatar-cover:hover .profile__avatar{
+    opacity: 0.7;
+}
+.profile__avatar-middle{
+    position: absolute;
+    z-index: 9;
+    background-image: url("../../../images/pencil.svg");
+    background-repeat: no-repeat;
+    background-position: center center;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: .3s ease;
+}
+.profile__avatar-cover:hover .profile__avatar-middle{
+    opacity: 1;
+}
+.profile__avatar-cover{
+    position: relative;
+width: 128px;
+height: 128px;
+
+}
+
+
+
+.profile__avatar-cover:hover .profile__avatar{
+    opacity: 0.7;
 }

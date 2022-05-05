@@ -3,6 +3,7 @@ export default class Api {
 this._url = options.baseUrl;
 this._token = options.token;
     }
+    _getResponceData(res){}
     getInitialCards() {
         return fetch(`${this._url}/cards`, {
           headers: 
@@ -45,8 +46,7 @@ this._token = options.token;
           return Promise.reject(`Error: ${res.status}`)
         })
       }
-
-      putlike(cardId){
+      adLike(cardId){
         return fetch(`${this._url}/cards/likes/${cardId} `,{
           method: "PUT",
           headers: {authorization: this._token,'Content-Type': "application/json"},
@@ -73,7 +73,7 @@ this._token = options.token;
       
   //.......................End of cards api`s....................
 
-    getInitialProfile(){
+    getProfile(){
       return fetch(`${this._url}/users/me`, {
         headers: 
         {authorization: this._token}
