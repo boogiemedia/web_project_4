@@ -5,12 +5,14 @@ export default class FormValidator {
     this.form = form;
     this.inputList = [...this.form.querySelectorAll(settings.inputSelector)];
     this.button = this.form.querySelector(settings.submitButtonSelector);
+    this.isFormValid = true;
   }
   resetValidation() {
     this.inputList.forEach((input) => {
       this._hideError(input);
       input.classList.remove(this.settings.inputErrorClass);
     });
+    this.isFormValid = true;
   }
   enableValidation() {
     this.form.addEventListener("submit", (e) => {
@@ -19,12 +21,16 @@ export default class FormValidator {
     this._setEventListeners(this.form);
   }
   _showError(input) {
-    const errorElement = this.form.querySelector(`#${input.id}-error`);
-    errorElement.textContent = input.validationMessage;
+    if(!this.isFormValid) {
+      const errorElement = this.form.querySelector(`#${input.id}-error`);
+      errorElement.textContent = input.validationMessage;
+    }
   }
   _hideError(input) {
-    if (this.isFormValid) {const errorElement = this.form.querySelector(`#${input.id}-error`);
-    errorElement.textContent = " ";}
+    if(!this.isFormValid) {
+      const errorElement = this.form.querySelector(`#${input.id}-error`);
+      errorElement.textContent = " ";      
+    }
   }
   _checkValidity(input) {
     const { inputErrorClass } = this.settings;

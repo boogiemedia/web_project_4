@@ -108,7 +108,7 @@ this._token = options.token;
     })
     .then(res => {
       if (res.ok) {
-        return console.log(avatar)
+        return res.json()
       }
       return Promise.reject(`Error: ${res.status}`)
     })

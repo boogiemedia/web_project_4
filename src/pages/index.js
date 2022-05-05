@@ -163,13 +163,13 @@ const avatarForm = new PopupWithForm(
   "saving...",
 
   (avatar) => {
-    // avatarForm.showLoading()
+    avatarForm.showLoading()
     api
       .changeavatar(avatar)
       .then((res) => {
         avatarImg.src = res.avatar;
       })
-      //.catch(()=> console.log(error))
+      .catch(()=> console.log(error))
       .finally(() => {
         avatarForm.hideLoading();
         avatarForm.close();
