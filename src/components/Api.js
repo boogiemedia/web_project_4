@@ -4,7 +4,7 @@ this._url = options.baseUrl;
 this._token = options.token;
     }
 
-    _getResponceData(res){
+    _getResponseData(res){
       if (res.ok) {
         return res.json();
       }
@@ -16,9 +16,7 @@ this._token = options.token;
           headers: 
           {authorization: this._token}
         })
-          .then(res => 
-           this._getResponceData(res)
-          )
+          .then(this._getResponseData)
           
       } 
       addNewCard(data){
@@ -28,9 +26,7 @@ this._token = options.token;
           {authorization: this._token, 'Content-Type': "application/json"},
           body: JSON.stringify (data)
         })
-        .then(res => 
-          this._getResponceData(res)
-        )
+        .then(this._getResponseData)
       } 
 
       deleteCard(cardId){
@@ -38,39 +34,29 @@ this._token = options.token;
           method: "DELETE",
           headers: {authorization: this._token}
         })
-        .then(res => 
-          this._getResponceData(res)
-        )
+        .then(this._getResponseData)
       }
-      adLike(cardId){
+      addLike(cardId){
         return fetch(`${this._url}/cards/likes/${cardId} `,{
           method: "PUT",
           headers: {authorization: this._token,'Content-Type': "application/json"},
         })
-        .then(res => 
-          this._getResponceData(res)
-        )
+        .then(this._getResponseData)
       }
       deleteLike(cardId){
         return fetch(`${this._url}/cards/likes/${cardId} `,{
           method: "DELETE",
           headers: {authorization: this._token,'Content-Type': "application/json"},
         })
-        .then(res => 
-          this._getResponceData(res)
-        )
-      }
-      
-  //.......................End of cards api`s....................
-
+        .then(this._getResponseData)
+      }  
+  //.......................End of cards api`s...................
     getProfile(){
       return fetch(`${this._url}/users/me`, {
         headers: 
         {authorization: this._token}
       })
-        .then(res => 
-          this._getResponceData(res)
-        )
+        .then(this._getResponseData)
     }
   setProfile(data){
     return fetch(`${this._url}/users/me`, {
@@ -78,9 +64,7 @@ this._token = options.token;
       headers: {authorization: this._token,  'Content-Type': "application/json"},
       body: JSON.stringify({name: data.name, about: data.about})
     })
-      .then(res => 
-        this._getResponceData(res)
-      )
+      .then(this._getResponseData)
   }
   changeAvatar(avatar){
     return fetch(`${this._url}/users/me/avatar `,{
@@ -88,13 +72,8 @@ this._token = options.token;
       headers: {authorization: this._token, 'Content-Type': "application/json"},
       body: JSON.stringify(avatar)
     })
-    .then(res => 
-      this._getResponceData(res)
-    )
+    .then(this._getResponseData)
   }
-
-
-
 //....................................................................end of file.................................................
   } 
 

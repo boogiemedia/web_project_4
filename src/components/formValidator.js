@@ -8,11 +8,11 @@ export default class FormValidator {
     this.isFormValid = true;
   }
   resetValidation() {
+    this.isFormValid = true;
     this.inputList.forEach((input) => {
       this._hideError(input);
       input.classList.remove(this.settings.inputErrorClass);
     });
-    this.isFormValid = true;
   }
   enableValidation() {
     this.form.addEventListener("submit", (e) => {

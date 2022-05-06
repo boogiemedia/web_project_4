@@ -41,7 +41,7 @@ const userInfo = new UserInfo({
   userJobSelector: ".profile__sub-info",
 });
 //......................End of user Info......................................
-const deleteForm = new PopupWithSubmit(".popup_type_delete-card");
+const deleteForm = new PopupWithSubmit(".popup_type_delete-card",  "yes","saving...",);
 
 function createCard(data) {
   const card = new Card(
@@ -52,17 +52,20 @@ function createCard(data) {
     },
     (id) => {
      deleteForm.setHandleSubmit(() => {
+       deleteForm.showLoading()
         api.deleteCard(id).then((res) => {
           card.removeCard(res);
           deleteForm.close();
-        });
+        })
+        .catch((res)=> {console.log("we have a problem", res)})
+        .finally(()=> deleteForm.hideLoading());
       });
       deleteForm.setEventListeners();
       deleteForm.open();
     },
     (id) => {
       api
-        .adLike(id)
+        .addLike(id)
         .then((res)=> card.updateLikes(res.likes))
         .catch((id) => console.log("error in adding like", id));
     },
@@ -70,7 +73,7 @@ function createCard(data) {
       api
         .deleteLike(id)
         .then((res)=> card.updateLikes(res.likes))
-        .catch((id) => console.log("error in adding like",id));
+        .catch((id) => console.log("error in removing  like",id));
     },
     userId
   );
@@ -90,7 +93,8 @@ const api = new Api({
 //initialization of cards
 api.getInitialCards().then((res) => {
   cardSection.renderItems(res);
-});
+})
+.catch((res)=> {console.log("error", res)})
 
 //add new Card popUp
 const addCardButton = document.querySelector(".profile__add-button");
@@ -106,8 +110,9 @@ const cardForm = new PopupWithForm(
         cardSection.addItem(createCard(res));
         cardForm.close();
       })
-      .catch(() => console.log("error"))
+      .catch((res) => console.log("there is error in adding card", res ))
       .finally(() => {
+        addCardFormValidator.toggleButtonState()
         cardForm.hideLoading();
       
       });
@@ -130,7 +135,8 @@ api.getProfile().then((profile) => {
   userInfo.setUserInfo({ name: profile.name, about: profile.about });
   avatarImg.src = profile.avatar;
   userId = profile._id;
-});
+})
+.catch((res)=> {console.log("error in getting profile info", res)})
 //set profile info
 const avatarImg = document.getElementById("profile-avatar");
 const openProfileEditorButton = document.querySelector(".profile__edit-button");
@@ -144,11 +150,12 @@ const profileForm = new PopupWithForm(
       .setProfile(profile)
       .then((profile) => {
         userInfo.setUserInfo(profile);
+        profileForm.close();
       })
-      .catch(() => console.log("error"))
+      .catch((res) => console.log("error in setting profile info", res))
       .finally(() => {
         profileForm.hideLoading();
-        profileForm.close();
+       
       });
   }
 );
@@ -174,11 +181,12 @@ const avatarForm = new PopupWithForm(
       .changeAvatar(avatar)
       .then((res) => {
         avatarImg.src = res.avatar;
+        avatarForm.close();
       })
-      .catch(() => console.log(error))
+      .catch((res) => console.log("houston we have a problem", res))
       .finally(() => {
         avatarForm.hideLoading();
-        avatarForm.close();
+        avatarFormValidator.toggleButtonState()
       });
   }
 );

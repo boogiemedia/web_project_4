@@ -28,7 +28,6 @@ export default class Card {
   }
   updateLikes(likes) {
     // set instance variable
-    console.log(this._likes, likes);
     this._likes = likes;
     this._renderLikes();
   }
